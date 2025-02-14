@@ -1,6 +1,6 @@
 import React from 'react'
 import { FaGithub } from "react-icons/fa";
-import { TfiEmail } from "react-icons/tfi";
+import { HiDocumentArrowDown } from 'react-icons/hi2';
 const Header = () => {
   return (
     <div>
@@ -18,7 +18,7 @@ const Header = () => {
                 <a className="mr-5 hover:text-blue-300" href='/components/contact'>Contact</a>
                 </nav>
                 <button className="inline-flex items-center bg-slate-300 border-0 py-1 px-3 gap-2 focus:outline-none text-black hover:text-gray-100 hover:bg-blue-300 rounded text-base mt-4 md:mt-0">
-                  <a href="mailto:mubashirmpa2008@gmail.com">E-mail</a><TfiEmail/>
+                  <a href="/components/CV" className='flex gap-1 items-center'>Cv<HiDocumentArrowDown className='font-bold text-xl'/></a>
                 </button>
             </div>
         </header>

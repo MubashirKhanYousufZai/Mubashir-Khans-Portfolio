@@ -1,4 +1,4 @@
-'use client'; // Add this line
+'use client';
 
 import React, { useState } from 'react';
 import { TfiEmail } from "react-icons/tfi";
@@ -8,99 +8,100 @@ const Contact = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
 
-  const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault(); // Prevent the default form submission
+  const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoading(true);
 
     const templateParams = {
-      name,
-      email,
+      from_name: name,
+      from_email: email,
       message,
     };
 
-    // Use your EmailJS user ID, service ID, and template ID
-    emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', templateParams, 'YOUR_USER_ID')
-      .then((response) => {
-        console.log('Email successfully sent!', response.status, response.text);
-        // Clear the form or show a success message here
-        setName('');
-        setEmail('');
-        setMessage('');
-      }, (err) => {
-        console.error('Failed to send email. Error:', err);
-      });
+    try {
+      await emailjs.send(
+        'YOUR_SERVICE_ID',
+        'YOUR_TEMPLATE_ID',
+        templateParams,
+        'YOUR_USER_ID'
+      );
+      setSuccess(true);
+      setName('');
+      setEmail('');
+      setMessage('');
+    } catch (err) {
+      console.error('Failed to send email:', err);
+      setSuccess(false);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div>
-      <section className="text-slate-600 body-font relative">
-        <div className="container px-5 py-24 mx-auto">
-          <div className="flex flex-col text-center w-full mb-12">
-            <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-slate-900">
-              Contact For Any Queries
-            </h1>
+    <div className="bg-slate-100 min-h-screen flex items-center justify-center">
+      <section className="text-gray-700 body-font relative w-full max-w-2xl p-6 bg-white shadow-md rounded-lg">
+        <h1 className="text-2xl font-bold text-center text-gray-900 mb-6">
+          Contact Me
+        </h1>
+        <form className="space-y-4" onSubmit={sendEmail}>
+          <div>
+            <label htmlFor="name" className="block text-sm font-medium text-gray-600">
+              Name
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="w-full px-3 py-2 mt-1 border rounded-lg focus:ring-blue-300 focus:border-blue-500"
+              required
+            />
           </div>
-          <div className="lg:w-1/2 md:w-2/3 mx-auto">
-            <form className="flex flex-wrap -m-2" onSubmit={sendEmail}>
-              <div className="p-2 w-1/2">
-                <div className="relative">
-                  <label htmlFor="name" className="leading-7 text-sm text-slate-600">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-slate-100 bg-opacity-50 rounded border border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-slate-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="p-2 w-1/2">
-                <div className="relative">
-                  <label htmlFor="email" className="leading-7 text-sm text-slate-600">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full bg-slate-100 bg-opacity-50 rounded border border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 text-base outline-none text-slate-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="p-2 w-full">
-                <div className="relative">
-                  <label
-                    htmlFor="message"
-                    className="leading-7 text-sm text-slate-600"
-                  >
-                    Message
-                  </label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    value={message}
-                    onChange={(e) => setMessage(e.target.value)}
-                    className="w-full bg-slate-100 bg-opacity-50 rounded border border-slate-300 focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200 h-32 text-base outline-none text-slate-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
-                    required
-                  />
-                </div>
-              </div>
-              <div className="p-2 w-full">
-                <button type="submit" className="flex mx-auto text-black hover:text-white bg-slate-300 border-0 py-2 px-8 focus:outline-none hover:bg-blue-300 rounded text-lg gap-1">
-                    <a href="mailto:mubashirmpa2008@gmail.com">Email</a>
-                  <TfiEmail className='text-2xl font-bold' />
-                </button>
-              </div>
-            </form>
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-600">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="w-full px-3 py-2 mt-1 border rounded-lg focus:ring-blue-300 focus:border-blue-500"
+              required
+            />
           </div>
-        </div>
+          <div>
+            <label htmlFor="message" className="block text-sm font-medium text-gray-600">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              className="w-full h-32 px-3 py-2 mt-1 border rounded-lg focus:ring-blue-300 focus:border-blue-500"
+              required
+            ></textarea>
+          </div>
+          <div className="flex justify-center">
+            <button
+              type="submit"
+              className="flex items-center px-6 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 transition-all duration-300"
+              disabled={loading}
+            >
+              {loading ? 'Sending...' : 'Send Message'}
+              <TfiEmail className="ml-2 text-xl" />
+            </button>
+          </div>
+        </form>
+        {success && (
+          <p className="mt-4 text-center text-green-600">Message sent successfully!</p>
+        )}
       </section>
     </div>
   );
