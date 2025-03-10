@@ -3,15 +3,16 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { FaLinkedin } from "react-icons/fa";
 
 const Projects = () => {
   const projects = [
     {
       type: "Full Stack",
-      link: "https://hackathon-milestone5-task2.vercel.app/",
-      name: "Resume Builder",
-      description: "A user-friendly web app for creating personalized resumes effortlessly.",
-      image: "/resume.webp"
+      link: "https://the-pawfect-store.vercel.app/",
+      name: "The Pawfect Store",
+      description: "A user-friendly web app for pet lovers to find their loving partner.",
+      image: "/pawfect.webp"
     },
     {
       type: "Full Stack",
@@ -19,13 +20,6 @@ const Projects = () => {
       name: "Quick Crave",
       description: "A Q-commerce website for a Cafe Quick Crave.",
       image: "/quick.webp"
-    },
-    {
-      type: "Full Stack",
-      link: "https://read-sphere-five.vercel.app/",
-      name: "Read Sphere",
-      description: "A modern reading platform.",
-      image: "/read-sphere.webp"
     },
     {
       type: "Full Stack",
@@ -38,7 +32,7 @@ const Projects = () => {
       type: "Full Stack",
       link: "https://urdu-rapandreality.vercel.app/",
       name: "Urdu Rap And Reality",
-      description: "A Blog website for Urdu Rap And Reality",
+      description: "A Blog website for Urdu Rap And Reality.",
       image: "/urdu.webp"
     },
     {
@@ -47,7 +41,14 @@ const Projects = () => {
       name: "Rivayati Andaz",
       description: "A Rental E-commerce website for a furniture brand Rivayati Andaz.",
       image: "/rivayati.webp"
-    }
+    },
+    {
+      type: "Full Stack",
+      link: "https://hackathon-milestone5-task2.vercel.app/",
+      name: "Resume Builder",
+      description: "A user-friendly web app for creating personalized resumes effortlessly.",
+      image: "/resume.webp",
+    },
   ];
 
   return (
@@ -68,7 +69,7 @@ const Projects = () => {
             {projects.map((project, index) => (
               <motion.div 
                 key={index} 
-                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300"
+                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -81,16 +82,45 @@ const Projects = () => {
                     className="rounded-lg mb-4" 
                   />
                 </div>
-                <h3 className="text-xs font-medium text-blue-500 tracking-widest">{project.type}</h3>
-                <h2 className="text-lg font-semibold text-gray-900 mt-2 hover:text-blue-500 transition-colors">
+                <h3 className="text-xs font-medium text-blue-300 tracking-widest">{project.type}</h3>
+                <h2 className="text-lg font-semibold text-gray-900 mt-2 hover:text-blue-400 transition-colors">
                   <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={project.name}>
                     {project.name}
                   </a>
                 </h2>
                 <p className="text-gray-600 mt-2">{project.description}</p>
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="mt-4 px-6 py-2 bg-blue-300 text-slate-600 font-medium rounded-lg hover:bg-blue-400 transition-all duration-300"
+                >
+                  View Project
+                </a>
               </motion.div>
             ))}
           </div>
+
+          {/* LinkedIn Profile Box */}
+          <motion.div 
+            className="mt-16 bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center"
+            whileHover={{ scale: 1.05 }}
+          >
+            <FaLinkedin className="text-blue-600 text-5xl mb-4" />
+            <h2 className="text-xl font-semibold text-gray-900">View My LinkedIn Profile</h2>
+            <p className="text-gray-600 mt-2">
+              Check out my LinkedIn for more previous and upcoming projects!
+            </p>
+            <a 
+              href="https://www.linkedin.com/in/mubashir-khan-538a662bb" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-4 px-6 py-3 bg-blue-300 text-slate-600 font-medium rounded-lg hover:bg-blue-400 transition-all duration-300"
+            >
+              Visit LinkedIn
+            </a>
+          </motion.div>
+
         </div>
       </section>
     </div>

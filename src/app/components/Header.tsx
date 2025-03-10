@@ -1,29 +1,53 @@
-import React from 'react'
+import React from 'react';
 import { FaGithub } from "react-icons/fa";
 import { HiDocumentArrowDown } from 'react-icons/hi2';
+
 const Header = () => {
   return (
-    <div>
-        <header className="bg-black text-white body-font">
-            <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-                <a className="flex title-font font-medium items-center text-white mb-4 md:mb-0" href='https://github.com/MubashirKhanYousufZai'>
-                <FaGithub className='text-3xl font-boid hover:text-blue-300'/>
-                <span className="ml-3 text-xl hover:text-blue-300">Mubashir Khan Yousufzai !</span>
-                </a>
-                <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a className="mr-5 hover:text-blue-300" href='/'>Home</a>
-                <a className="mr-5 hover:text-blue-300" href='/components/hero'>About</a>
-                <a className="mr-5 hover:text-blue-300" href='/components/projects'>Projects</a>
-                <a className="mr-5 hover:text-blue-300" href='/components/skills'>Skills</a>
-                <a className="mr-5 hover:text-blue-300" href='/components/contact'>Contact</a>
-                </nav>
-                <button className="inline-flex items-center bg-slate-300 border-0 py-1 px-3 gap-2 focus:outline-none text-black hover:text-gray-100 hover:bg-blue-300 rounded text-base mt-4 md:mt-0">
-                  <a href="/components/CV" className='flex gap-1 items-center'>Cv<HiDocumentArrowDown className='font-bold text-xl'/></a>
-                </button>
-            </div>
-        </header>
-    </div>
-  )
-}
+    <header className="bg-black text-white shadow-lg w-full">
+      <div className="container mx-auto flex flex-wrap items-center justify-between px-6 py-4">
 
-export default Header
+        {/* Logo / Name */}
+        <a 
+          className="flex items-center text-white transition-all duration-300 hover:text-blue-300"
+          href='https://github.com/MubashirKhanYousufZai'
+        >
+          <FaGithub className='text-3xl' />
+          <span className="ml-3 text-xl font-semibold">Mubashir Khan Yousufzai</span>
+        </a>
+
+        {/* Navbar Links */}
+        <nav className="hidden md:flex items-center space-x-6">
+          {[
+            { name: "Home", path: "/" },
+            { name: "About", path: "/components/hero" },
+            { name: "Projects", path: "/components/projects" },
+            { name: "Skills", path: "/components/skills" },
+            { name: "Experience", path: "/components/experiance" }, 
+            { name: "Contact", path: "/components/contact" }
+          ].map((item, index) => (
+            <a 
+              key={index}
+              href={item.path}
+              className="relative group transition-all duration-300 hover:text-blue-300"
+            >
+              {item.name}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-blue-300 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          ))}
+        </nav>
+
+        {/* CV Download Button */}
+        <a 
+          href="/components/CV"
+          className="flex items-center gap-2 bg-blue-400 hover:bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md transition-all duration-300 focus:outline-none"
+        >
+          CV <HiDocumentArrowDown className='text-xl' />
+        </a>
+
+      </div>
+    </header>
+  );
+};
+
+export default Header;
