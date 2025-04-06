@@ -12,7 +12,7 @@ const skills = [
   { name: "CSS/Tailwind CSS", level: "50%", icon: <FaCss3Alt className="text-4xl text-blue-500" /> },
   { name: "TypeScript/JavaScript", level: "50%", icon: <BiLogoTypescript className="text-4xl text-blue-700" /> },
   { name: "Node.js", level: "50%", icon: <FaNode className="text-4xl text-green-600" /> },
-  { name: "Python", level: "20%", icon: <FaPython className="text-4xl text-yellow-500" /> },
+  { name: "Python", level: "50%", icon: <FaPython className="text-4xl text-yellow-500" /> },
   { name: "Prompt Engineering", level: "70%", icon: <MdEngineering className="text-4xl text-gray-700" /> },
 ];
 
