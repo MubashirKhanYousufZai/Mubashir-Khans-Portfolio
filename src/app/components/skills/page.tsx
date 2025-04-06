@@ -7,11 +7,13 @@ import { FaCss3Alt, FaNode, FaPython } from "react-icons/fa";
 import { BiLogoTypescript } from "react-icons/bi";
 import { MdEngineering } from "react-icons/md";
 import { RiNextjsFill } from "react-icons/ri";
+import { IoLogoJavascript } from "react-icons/io5";
 
 const skills = [
   { name: "HTML", level: "50%", icon: <TiHtml5 className="text-4xl text-orange-500" /> },
   { name: "CSS/Tailwind CSS", level: "50%", icon: <FaCss3Alt className="text-4xl text-blue-500" /> },
-  { name: "TypeScript/JavaScript", level: "50%", icon: <BiLogoTypescript className="text-4xl text-blue-700" /> },
+  { name: "TypeScript", level: "50%", icon: <BiLogoTypescript className="text-4xl text-blue-700" /> },
+  { name: "JavaScript", level: "50%", icon: <IoLogoJavascript className="text-4xl text-blue-700" /> },
   { name: "Node.js", level: "50%", icon: <FaNode className="text-4xl text-green-600" /> },
   { name: "Next.js", level: "50%", icon: <RiNextjsFill className="text-4xl text-green-600" /> },
   { name: "Python", level: "50%", icon: <FaPython className="text-4xl text-yellow-500" /> },
