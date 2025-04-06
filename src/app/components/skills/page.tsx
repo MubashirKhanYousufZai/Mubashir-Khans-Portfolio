@@ -61,7 +61,7 @@ const Skills = () => {
             href="/components/contact"
             className="bg-blue-500 text-white font-semibold py-3 px-10 rounded-lg transition-all duration-300 hover:bg-blue-600 shadow-md"
           >
-            Contact
+            Contact 🤙🏻
           </a>
         </motion.div>
       </div>
