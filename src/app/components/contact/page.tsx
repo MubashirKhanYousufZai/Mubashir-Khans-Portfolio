@@ -39,14 +39,14 @@ const Contact = () => {
       setMessage("");
     } catch (err) {
       console.error("Failed to send email:", err);
-      setError("Failed to send message. Please try again later.");
+      setError("Failed to send message. Please try again later. Contact me on Whatsapp");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-slate-100 min-h-screen flex items-center justify-center py-16 md:py-24">
+    <div className="bg-slate-100 text-slate-950 min-h-screen flex items-center justify-center py-16 md:py-24">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
