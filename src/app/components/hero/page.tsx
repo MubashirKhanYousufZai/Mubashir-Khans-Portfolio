@@ -47,14 +47,14 @@ const Hero = () => {
               </h1>
 
               <p className="text-gray-700 leading-relaxed text-lg">
-                I completed my school education at <strong>Metropolitan Academy II</strong>, securing 63% in my ninth-grade board exams 
-                and 65% in matriculation, specializing in Computer Science 📚🎓. In January 2024, I took a significant 
-                step forward by enrolling in a prestigious skill enhancement program launched by <strong>Governor Sindh, Kamran 
-                Khan Tessori</strong> 🚀✨. As part of this initiative, I embarked on an exciting journey into web development 💻🌐, 
-                honing my skills and expanding my expertise. I <strong>successfully passed Quarter 2 of GIAIC 🏆</strong>, 
-                further strengthening my technical foundation. Alongside web development, I am also learning Python 🐍 
-                to diversify my skill set. With <strong>over 7 months of experience 👨‍💻</strong>, I am continuously striving to grow and innovate in 
-                the digital space! 🚀🔥
+               Hello 👋, my name is Mubashir Khan. I’m a Front-End Web Developer 💻 from Karachi, Pakistan 🇵🇰. 
+               I have experience in building responsive & user-friendly websites using Next.js ⚡, React ⚛️, Tailwind CSS 🎨,
+               and ShadCN UI 🖌️.
+
+               I have also worked with Python 🐍 and Streamlit 📊 for interactive web apps. I completed my training under the Governor Sindh IT Program 🎓, 
+               where I developed real-world projects like an E-commerce store 🛒, Personal Library Manager 📚, and Portfolio Websites 🌐.
+
+               Im passionate about creating clean, efficient, and visually appealing UIs ✨, and I’m always eager to learn new tools 🛠️ and technologies 🚀 to improve my skills.
               </p>
 
               {/* Contact Button */}
