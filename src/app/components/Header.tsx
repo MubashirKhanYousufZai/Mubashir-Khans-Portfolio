@@ -27,12 +27,11 @@ const Header = () => {
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
 
         {/* Logo / Name */}
+        <FaGithub className="text-3xl" />
         <Link 
-          href="https://github.com/MubashirKhanYousufZai" 
+          href="/" 
           className="flex items-center text-white transition-all duration-300 hover:text-blue-300"
-          aria-label="GitHub Profile of Mubashir Khan Yousufzai"
         >
-          <FaGithub className="text-3xl" />
           <span className="ml-3 text-xl font-semibold">Mubashir Khan Yousufzai</span>
         </Link>
 
