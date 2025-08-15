@@ -17,7 +17,7 @@ const Contact = () => {
   const sendEmail = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
+    setError("");
     setSuccess(false);
 
     const templateParams = {
@@ -39,14 +39,14 @@ const Contact = () => {
       setMessage("");
     } catch (err) {
       console.error("Failed to send email:", err);
-      setError("Failed to send message. Please try again later. Contact me on Whatsapp");
+      setError("⚠️ Couldn’t send message. Try again or ping me on WhatsApp!");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-slate-100 text-slate-950 min-h-screen flex items-center justify-center py-16 md:py-24">
+    <div className="bg-gradient-to-br from-slate-100 to-slate-200 text-slate-950 min-h-screen flex items-center justify-center py-16 md:py-24">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -57,56 +57,57 @@ const Contact = () => {
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="bg-white shadow-lg rounded-xl p-8"
+          className="bg-white shadow-lg rounded-2xl p-8"
         >
-          <h1 className="text-3xl font-semibold text-gray-800 text-center mb-6">
-            Contact Me
+          <h1 className="text-3xl font-extrabold text-gray-800 text-center mb-6">
+            Contact Me 📬
           </h1>
+          <p className="text-center text-gray-600 mb-8">
+            Got an idea, project, or just want to say hi? Drop me a message!
+          </p>
 
+          {/* Form */}
           <form className="space-y-6" onSubmit={sendEmail}>
-            <motion.div whileFocus={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <div>
               <label htmlFor="name" className="block text-sm font-medium text-gray-600">
                 Your Name
               </label>
               <input
                 type="text"
                 id="name"
-                name="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 required
               />
-            </motion.div>
+            </div>
 
-            <motion.div whileFocus={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-600">
                 Your Email
               </label>
               <input
                 type="email"
                 id="email"
-                name="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 className="w-full px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 required
               />
-            </motion.div>
+            </div>
 
-            <motion.div whileFocus={{ scale: 1.05 }} transition={{ duration: 0.3 }}>
+            <div>
               <label htmlFor="message" className="block text-sm font-medium text-gray-600">
                 Your Message
               </label>
               <textarea
                 id="message"
-                name="message"
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
                 className="w-full h-32 px-4 py-2 mt-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
                 required
               ></textarea>
-            </motion.div>
+            </div>
 
             <div className="flex justify-center">
               <motion.button
@@ -122,16 +123,26 @@ const Contact = () => {
             </div>
           </form>
 
-          {success && <p className="mt-4 text-center text-green-600">Message sent successfully!</p>}
+          {/* Alerts */}
+          {success && <p className="mt-4 text-center text-green-600">✅ Message sent successfully!</p>}
           {error && <p className="mt-4 text-center text-red-500">{error}</p>}
 
+          {/* Social Links */}
           <div className="mt-12 text-center">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Find me on</h2>
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">Find me on 🌍</h2>
             <div className="flex justify-center space-x-8">
-              <FaGithub className="text-3xl text-blue-600 hover:text-blue-800" />
-              <FaNpm className="text-3xl text-yellow-600 hover:text-yellow-800" />
-              <FaWhatsapp className="text-3xl text-green-500 hover:text-green-700" />
-              <FaLinkedinIn className="text-3xl text-blue-500 hover:text-blue-700" />
+              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+                <FaGithub className="text-3xl text-gray-800 hover:text-black transition-colors" />
+              </a>
+              <a href="https://www.npmjs.com/~yourusername" target="_blank" rel="noopener noreferrer">
+                <FaNpm className="text-3xl text-red-500 hover:text-red-700 transition-colors" />
+              </a>
+              <a href="https://wa.me/yourwhatsapplink" target="_blank" rel="noopener noreferrer">
+                <FaWhatsapp className="text-3xl text-green-500 hover:text-green-700 transition-colors" />
+              </a>
+              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+                <FaLinkedinIn className="text-3xl text-blue-600 hover:text-blue-800 transition-colors" />
+              </a>
             </div>
           </div>
         </motion.section>
