@@ -28,10 +28,14 @@ const Header = () => {
       <div className="container mx-auto flex items-center justify-between px-6 py-4">
         
         {/* Logo / Name */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-3">
           <Link
             href="https://github.com/MubashirKhanYousufZai"
-          <FaGithub className="text-3xl" />
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-300 transition-colors duration-300"
+          >
+            <FaGithub className="text-3xl" />
           </Link>
           <Link 
             href="/" 
