@@ -131,16 +131,16 @@ const Contact = () => {
           <div className="mt-12 text-center">
             <h2 className="text-2xl font-semibold text-gray-800 mb-4">Find me on 🌍</h2>
             <div className="flex justify-center space-x-8">
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/MubashirKhanYousufZai" target="_blank" rel="noopener noreferrer">
                 <FaGithub className="text-3xl text-gray-800 hover:text-black transition-colors" />
               </a>
-              <a href="https://www.npmjs.com/~yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.npmjs.com/~mubashir_khan08" target="_blank" rel="noopener noreferrer">
                 <FaNpm className="text-3xl text-red-500 hover:text-red-700 transition-colors" />
               </a>
-              <a href="https://wa.me/yourwhatsapplink" target="_blank" rel="noopener noreferrer">
+              <a href="https://wa.me/qr/FWX3BWWPABVRG1" target="_blank" rel="noopener noreferrer">
                 <FaWhatsapp className="text-3xl text-green-500 hover:text-green-700 transition-colors" />
               </a>
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/mubashir-khan-538a662bb" target="_blank" rel="noopener noreferrer">
                 <FaLinkedinIn className="text-3xl text-blue-600 hover:text-blue-800 transition-colors" />
               </a>
             </div>
