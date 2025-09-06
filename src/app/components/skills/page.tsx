@@ -34,7 +34,7 @@ const skills = {
 const Skills = () => {
   return (
     <motion.section
-      className="body-font py-20 px-6 sm:px-10 bg-gradient-to-b from-gray-50 via-slate-100 to-gray-200 font-[Inter]"
+      className="body-font py-20 px-6 sm:px-10 bg-gradient-to-b from-gray-900 via-black to-gray-800 font-[Inter]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -43,7 +43,7 @@ const Skills = () => {
         {/* Heading */}
         <div className="text-center mb-16">
           <motion.h1
-            className="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight"
+            className="text-5xl md:text-6xl font-extrabold text-white tracking-tight"
             initial={{ y: -30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.7 }}

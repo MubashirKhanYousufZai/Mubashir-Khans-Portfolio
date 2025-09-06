@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { FaGithub, FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes } from "react-icons/fa";
 import { HiDocumentArrowDown } from "react-icons/hi2";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { CgProfile } from "react-icons/cg";
 
 const Header = () => {
   const pathname = usePathname();
@@ -49,7 +50,7 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           className="flex items-center gap-3 text-white hover:text-blue-400 transition-all duration-300"
         >
-          <FaGithub className="text-3xl" />
+          <CgProfile className="text-3xl" />
           <span className="text-lg md:text-xl font-bold tracking-wide">
             Mubashir Khan Yousufzai
           </span>

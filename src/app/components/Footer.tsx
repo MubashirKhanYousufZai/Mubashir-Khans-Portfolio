@@ -76,13 +76,6 @@ const Footer = () => {
           </motion.a>
         </div>
       </div>
-
-      {/* Bottom Line */}
-      <div className="mt-6 border-t border-gray-800 pt-4 text-center text-xs text-gray-500">
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }}>
-          Made with ❤️ by Mubashir Khan
-        </motion.p>
-      </div>
     </footer>
   );
 };

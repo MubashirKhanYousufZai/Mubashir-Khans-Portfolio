@@ -4,10 +4,9 @@ import React from "react";
 import { FaDownload } from "react-icons/fa";
 import { motion } from "framer-motion";
 
-const CV = () => {
+export default function CV() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-800 px-4 py-12 text-white">
-      {/* Heading */}
       <motion.h1
         initial={{ opacity: 0, y: -30 }}
         animate={{ opacity: 1, y: 0 }}
@@ -17,7 +16,6 @@ const CV = () => {
         My CV
       </motion.h1>
 
-      {/* CV Display */}
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -25,16 +23,15 @@ const CV = () => {
         className="w-full max-w-5xl h-[720px] backdrop-blur-lg bg-white/5 border border-gray-700 rounded-2xl shadow-2xl overflow-hidden"
       >
         <iframe
-          src="/CV/mubashir-khan-yousufzai.pdf"
+          src="/CV/mubashir-khan-yousufzai-cv.pdf"
           className="w-full h-full rounded-2xl"
           title="My CV"
-        ></iframe>
+        />
       </motion.div>
 
-      {/* Download Button */}
       <motion.a
-        href="/CV/mubashir-khan-yousufzai.pdf"
-        download="mubashir-khan-yousufzai.pdf"
+        href="/CV/mubashir-khan-yousufzai-cv.pdf"
+        download="mubashir-khan-yousufzai-cv.pdf"
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
         transition={{ duration: 0.3 }}
@@ -44,7 +41,6 @@ const CV = () => {
         Download CV
       </motion.a>
 
-      {/* Bottom Note */}
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -55,6 +51,4 @@ const CV = () => {
       </motion.p>
     </div>
   );
-};
-
-export default CV;
+}
