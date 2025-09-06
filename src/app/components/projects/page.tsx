@@ -11,21 +11,14 @@ const Projects = () => {
       type: "Full Stack",
       link: "https://the-pawfect-store.vercel.app/",
       name: "The Pawfect Store",
-<<<<<<< HEAD
-      description:
-        "A user-friendly web app for pet lovers to find their loving partner.",
-      image: "/pawfect.webp",
-=======
       description: "A user-friendly web app for pet lovers to find their loving partner.",
-      image: "/pawfect.webp"
->>>>>>> 3d761dc1563fa40451afe0e4a453ffab131ee75e
+      image: "/pawfect.webp",
     },
     {
       type: "Full Stack",
       link: "https://quick-crave-iota.vercel.app/",
       name: "Quick Crave",
       description: "A Q-commerce website for a Cafe Quick Crave.",
-<<<<<<< HEAD
       image: "/quick.webp",
     },
     {
@@ -34,57 +27,31 @@ const Projects = () => {
       name: "Pizza Run",
       description: "A Q-commerce website for a restaurant Pizza Run.",
       image: "/pizza.jpg",
-=======
-      image: "/quick.webp"
-    },
-    {
-      type: "Full Stack",
-      link: "https://quarter2-final-hackathon-day4-1lxd.vercel.app/",
-      name: "Pizza Run",
-      description: "A Q-commerce website for a restaurant Pizza Run.",
-      image: "/pizza.jpg"
->>>>>>> 3d761dc1563fa40451afe0e4a453ffab131ee75e
     },
     {
       type: "Full Stack",
       link: "https://urdu-rapandreality.vercel.app/",
       name: "Urdu Rap And Reality",
       description: "A Blog website for Urdu Rap And Reality.",
-<<<<<<< HEAD
       image: "/urdu.webp",
-=======
-      image: "/urdu.webp"
->>>>>>> 3d761dc1563fa40451afe0e4a453ffab131ee75e
     },
     {
       type: "FrontEnd & UI/UX",
       link: "https://project-12-murex.vercel.app/",
       name: "Rivayati Andaz",
-<<<<<<< HEAD
-      description:
-        "A Rental E-commerce website for a furniture brand Rivayati Andaz.",
-      image: "/rivayati.webp",
-=======
       description: "A Rental E-commerce website for a furniture brand Rivayati Andaz.",
-      image: "/rivayati.webp"
->>>>>>> 3d761dc1563fa40451afe0e4a453ffab131ee75e
+      image: "/rivayati.webp",
     },
     {
       type: "Full Stack",
       link: "https://hackathon-milestone5-task2.vercel.app/",
       name: "Resume Builder",
-<<<<<<< HEAD
-      description:
-        "A user-friendly web app for creating personalized resumes effortlessly.",
-=======
       description: "A user-friendly web app for creating personalized resumes effortlessly.",
->>>>>>> 3d761dc1563fa40451afe0e4a453ffab131ee75e
       image: "/resume.webp",
     },
   ];
 
   return (
-<<<<<<< HEAD
     <div className="bg-gradient-to-b from-gray-900 via-black to-gray-800 min-h-screen px-6 py-20 md:py-28 font-sans text-gray-100">
       <section>
         {/* Header */}
@@ -187,78 +154,6 @@ const Projects = () => {
             Visit LinkedIn
           </a>
         </motion.div>
-=======
-    <div className="bg-slate-200 min-h-screen px-5 py-10 md:py-20">
-      <section className="text-gray-700 body-font">
-        <div className="container mx-auto">
-          <div className="flex flex-wrap items-center w-full mb-12">
-            <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
-              <h1 className="text-4xl font-extrabold text-gray-900">Few of My Projects!</h1>
-              <div className="h-1 w-24 bg-blue-300 rounded mt-2"></div>
-            </div>
-            <p className="lg:w-1/2 w-full leading-relaxed text-lg text-gray-600 mt-5 lg:mt-0">
-              Explore my diverse portfolio featuring full-stack applications, backend utilities, and UI/UX-focused web experiences.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div 
-                key={index} 
-                className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <div className="relative w-full h-[300px]">
-                  <Image 
-                    src={project.image} 
-                    alt={project.name} 
-                    layout="fill" 
-                    objectFit="cover" 
-                    className="rounded-lg mb-4" 
-                  />
-                </div>
-                <h3 className="text-xs font-medium text-blue-300 tracking-widest">{project.type}</h3>
-                <h2 className="text-lg font-semibold text-gray-900 mt-2 hover:text-blue-400 transition-colors">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" aria-label={project.name}>
-                    {project.name}
-                  </a>
-                </h2>
-                <p className="text-gray-600 mt-2">{project.description}</p>
-                <a 
-                  href={project.link} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="mt-4 px-6 py-2 bg-blue-300 text-slate-600 font-medium rounded-lg hover:bg-blue-400 transition-all duration-300"
-                >
-                  View Project
-                </a>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* LinkedIn Profile Box */}
-          <motion.div 
-            className="mt-16 bg-white p-8 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col items-center text-center"
-            whileHover={{ scale: 1.05 }}
-          >
-            <FaLinkedin className="text-blue-600 text-5xl mb-4" />
-            <h2 className="text-xl font-semibold text-gray-900">View My LinkedIn Profile</h2>
-            <p className="text-gray-600 mt-2">
-              Check out my LinkedIn for more previous and upcoming projects!
-            </p>
-            <a 
-              href="https://www.linkedin.com/in/mubashir-khan-538a662bb" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="mt-4 px-6 py-3 bg-blue-300 text-slate-600 font-medium rounded-lg hover:bg-blue-400 transition-all duration-300"
-            >
-              Visit LinkedIn
-            </a>
-          </motion.div>
-
-        </div>
->>>>>>> 3d761dc1563fa40451afe0e4a453ffab131ee75e
       </section>
     </div>
   );
