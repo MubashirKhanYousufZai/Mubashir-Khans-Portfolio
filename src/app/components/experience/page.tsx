@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { Briefcase } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 
+
 const experiences = [
   {
     role: "Web Developer",

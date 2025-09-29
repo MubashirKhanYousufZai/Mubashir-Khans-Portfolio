@@ -1,58 +1,83 @@
-import Image from 'next/image';
-import React from 'react';
-import { IoMdContact } from "react-icons/io";
+"use client";
 
-const Hero = () => {
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+
+export default function Hero() {
   return (
-    <div className='bg-slate-100'>
-      <section className="text-gray-600 body-font overflow-hidden">
-        <div className="container px-5 py-24 mx-auto flex justify-center">
-          <div className="lg:w-4/5 mx-auto flex flex-wrap items-center justify-between">
-            
-            {/* Profile Image */}
-            <div className="lg:w-1/3 w-full flex justify-center mb-6 lg:mb-0">
-              <Image
-                alt="Mubashir Khan YousufZai - Profile Picture"
-                className="rounded-full object-cover shadow-xl"
-                src="/profile.jpg"
-                width={250}
-                height={250}
-                quality={100}  
-              />
-            </div>
+    <section className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black">
+      {/* Background subtle grid */}
+      <div className="absolute inset-0 -z-10 bg-grid-slate-200/40 dark:bg-grid-slate-700/40" />
 
-            {/* Profile Details */}
-            <div className="lg:w-2/3 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0">
-              <a href="/">
-                <h2 className="text-xl font-semibold text-blue-600 tracking-widest mb-2">Mubashir Khan YousufZai</h2>
-                <h1 className="text-gray-900 text-4xl font-semibold mt-4 mb-2 leading-tight">
-                  Web Developer
-                </h1>
-              </a>
-              <div className="flex mt-2 items-center pb-3 border-b-2 border-slate-300 mb-5"></div>
-              <p className="leading-relaxed mt-5 text-lg text-gray-700">
-                I completed my school education at <strong>Metropolitan Academy</strong>, securing 63% in my ninth-grade 
-                board exams and 65% in matriculation, specializing in Computer Science. In January 2024, 
-                I took a significant step forward by enrolling in a prestigious skill enhancement program 
-                launched by <strong>Governor Sindh, Kamran Khan Tessori</strong> 🎓✨. As part of this initiative, I embarked 
-                on an exciting journey into web development, honing my skills and expanding my expertise 💻🚀. 
-                Currently, I am progressing into the second quarter of the program, eager to build innovative digital solutions! 
-                <strong>With over six months of hands-on experience</strong> in web development, I am ready to take on more challenging projects.
-              </p>
-              <div className="flex mt-6">
-                <a 
-                  href="/components/contact" 
-                  className="flex items-center text-white bg-blue-600 hover:bg-blue-700 py-3 px-8 rounded-lg transition-all duration-300 focus:outline-none"
-                >
-                  Contact <IoMdContact className='text-2xl ml-2' />
-                </a>
-              </div>
-            </div>
-          </div>
+      {/* Profile Image */}
+      <motion.div
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="mb-8"
+      >
+        <div className="relative w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-blue-600 shadow-2xl ring-4 ring-blue-600/20">
+          <Image
+            src="/mubashir.jpg"
+            alt="Mubashir Khan"
+            fill
+            className="object-cover"
+            priority
+          />
         </div>
-      </section>
-    </div>
-  );
-};
+      </motion.div>
 
-export default Hero;
+      {/* Heading */}
+      <motion.h1
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.9, ease: "easeOut" }}
+        className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+      >
+        Hi, I am{" "}
+        <span className="bg-gradient-to-r from-blue-600 to-purple-500 bg-clip-text text-transparent">
+          Mubashir Khan
+        </span>
+      </motion.h1>
+
+      {/* Subheading */}
+      <motion.p
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.2 }}
+        className="mt-4 max-w-2xl text-lg md:text-xl leading-relaxed text-gray-600 dark:text-gray-300"
+      >
+        A passionate Web Developer building modern, responsive, and user-friendly
+        web apps with <span className="font-semibold">Next.js</span>,{" "}
+        <span className="font-semibold">React</span>, and{" "}
+        <span className="font-semibold">Tailwind CSS</span>.
+      </motion.p>
+
+      {/* CTA Buttons */}
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.1, delay: 0.4 }}
+        className="mt-10 flex flex-col sm:flex-row gap-4"
+      >
+        <Button
+          size="lg"
+          className="flex items-center justify-center gap-2 px-8 py-4 text-lg font-semibold shadow-lg hover:scale-105 transition"
+        >
+          <a href="/components/projects" className="flex items-center gap-2">
+            View Projects <ArrowRight className="h-5 w-5" />
+          </a>
+        </Button>
+        <Button
+          size="lg"
+          variant="outline"
+          className="px-8 py-4 text-lg font-semibold hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+        >
+          <a href="/components/contact">Contact Me</a>
+        </Button>
+      </motion.div>
+    </section>
+  );
+}
