@@ -1,8 +1,8 @@
 import Projects from "./components/projects/page";
-import Experience from "./components/experiance/page";
 import Contact from "./components/contact/page";
 import Skills from "./components/skills/page";
 import Hero from "./components/hero/page";
+import Experience from "./components/experience/page";
 
 export default function Home() {
   return (
@@ -10,7 +10,7 @@ export default function Home() {
       <Hero />
       <Skills/>
       <Projects />
-      <Experience />
+      <Experience/>
       <Contact />
     </div>
   );
