@@ -3,7 +3,8 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { CgProfile } from "react-icons/cg";
-import { FaGithub, FaLinkedin, FaTwitter, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { IoIosMail } from "react-icons/io";
 
 const Footer = () => {
   return (
@@ -66,13 +67,13 @@ const Footer = () => {
           </motion.a>
 
           <motion.a
-            whileHover={{ scale: 1.2, color: "#25D366" }}
-            href="https://wa.me/qr/FWX3BWWPABVRG1"
+            whileHover={{ scale: 1.2, color: "#ccc" }}
+            href="mailto:mubashirmpa2008@gmail.com"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white text-2xl transition-all duration-300"
           >
-            <FaWhatsapp />
+            <IoIosMail />
           </motion.a>
         </div>
       </div>

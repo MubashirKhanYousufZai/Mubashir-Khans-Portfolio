@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { TfiEmail } from "react-icons/tfi";
+import { FaWhatsapp } from "react-icons/fa";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -81,7 +81,7 @@ const Contact = () => {
                 disabled={loading}
               >
                 {loading ? "Redirecting..." : "Send to WhatsApp"}
-                <TfiEmail className="ml-2 text-xl" />
+                <FaWhatsapp className="ml-2 text-xl" />
               </motion.button>
             </div>
           </form>

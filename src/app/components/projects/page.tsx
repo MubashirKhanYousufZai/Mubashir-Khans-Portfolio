@@ -8,19 +8,28 @@ import { FaLinkedin } from "react-icons/fa";
 const Projects = () => {
   const projects = [
     {
+      type: "Ai Agent",
+      link: "https://mubashirkhanyousufzai-chat-assistent-app-fefd95.streamlit.app/",
+      name: "Chitty Chat",
+      description: 
+        "Chitty Chat Assistant is a friendly AI chatbot that helps users with info and answers questions in a fun way.",
+      image: "/Chitty.png"
+    },
+    {
+      type: "Front End + Ai Agents",
+      link: "https://fitlytic.vercel.app/",
+      name: "Fitlytic",
+      description: 
+        "Fitlytic is a fitness and workout planning platform that uses AI to help users achieve their health and wellness goals.",
+      image: "/fitlytic.png"
+    },
+    {
       type: "Full Stack",
       link: "https://the-pawfect-store.vercel.app/",
       name: "The Pawfect Store",
       description:
         "A user-friendly web app for pet lovers to find their loving partner.",
       image: "/pawfect.webp",
-    },
-    {
-      type: "Full Stack",
-      link: "https://quick-crave-iota.vercel.app/",
-      name: "Quick Crave",
-      description: "A Q-commerce website for a Cafe Quick Crave.",
-      image: "/quick.webp",
     },
     {
       type: "Full Stack",
@@ -31,26 +40,17 @@ const Projects = () => {
     },
     {
       type: "Full Stack",
+      link: "https://quick-crave-iota.vercel.app/",
+      name: "Quick Crave",
+      description: "A Q-commerce website for a Cafe Quick Crave.",
+      image: "/quick.webp",
+    },
+    {
+      type: "Front End",
       link: "https://urdu-rapandreality.vercel.app/",
       name: "Urdu Rap And Reality",
       description: "A Blog website for Urdu Rap And Reality.",
       image: "/urdu.webp",
-    },
-    {
-      type: "FrontEnd & UI/UX",
-      link: "https://project-12-murex.vercel.app/",
-      name: "Rivayati Andaz",
-      description:
-        "A Rental E-commerce website for a furniture brand Rivayati Andaz.",
-      image: "/rivayati.webp",
-    },
-    {
-      type: "Full Stack",
-      link: "https://hackathon-milestone5-task2.vercel.app/",
-      name: "Resume Builder",
-      description:
-        "A user-friendly web app for creating personalized resumes effortlessly.",
-      image: "/resume.webp",
     },
   ];
 

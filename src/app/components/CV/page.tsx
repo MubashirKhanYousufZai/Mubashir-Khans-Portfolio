@@ -51,7 +51,7 @@ const CV = () => {
         transition={{ delay: 0.5, duration: 1 }}
         className="mt-6 text-gray-400 text-sm"
       >
-        Updated: September 2025 — Mubashir Khan Yousufzai
+        Updated: October 2025 — Mubashir Khan Yousufzai
       </motion.p>
     </div>
   );
