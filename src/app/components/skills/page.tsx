@@ -34,7 +34,7 @@ const skills = {
 const Skills = () => {
   return (
     <motion.section
-      className="body-font py-20 px-6 sm:px-10 bg-gradient-to-b from-gray-50 via-slate-100 to-gray-200 font-[Inter]"
+      className="body-font py-20 px-6 sm:px-10 bg-gradient-to-b from-gray-900 via-black to-gray-800 font-[Inter]"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -48,10 +48,17 @@ const Skills = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.7 }}
           >
-            My <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-indigo-600">Skills</span>
+           <div className="text-center gap-2">
+            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-center">
+              <span className="text-gray-100">My</span>{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">
+                Skills
+              </span>
+            </h1>
+           </div>
           </motion.h1>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Technologies and tools I’ve mastered and keep improving on my web development journey.
+            Technologies and tools I have mastered and keep improving on my web development journey.
           </p>
         </div>
 

@@ -37,15 +37,15 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section className="w-full min-h-screen flex flex-col justify-center items-center bg-gray-50 px-4 sm:px-6 lg:px-8">
+    <section className="w-full min-h-screen flex flex-col justify-center items-center bg-gradient-to-b from-gray-900 via-black to-gray-800 px-4 sm:px-6 lg:px-8">
       {/* Heading */}
       <motion.h1
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 text-gray-900"
+        className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-center mb-12 text-gray-100"
       >
-        My <span className="text-primary">Experience</span>
+        My <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">Experience</span>
       </motion.h1>
 
       {/* 3 Boxes Layout */}

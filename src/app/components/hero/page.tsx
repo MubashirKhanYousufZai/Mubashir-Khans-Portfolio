@@ -7,7 +7,7 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center bg-gradient-to-b from-gray-50 to-white dark:from-gray-900 dark:to-black">
+    <section className="relative flex flex-col items-center justify-center min-h-screen px-6 text-center bg-gradient-to-b from-gray-900 via-black to-gray-800">
       {/* Background subtle grid */}
       <div className="absolute inset-0 -z-10 bg-grid-slate-200/40 dark:bg-grid-slate-700/40" />
 
@@ -34,7 +34,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, ease: "easeOut" }}
-        className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white"
+        className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-50 dark:text-white"
       >
         Hi, I am{" "}
         <span className="bg-gradient-to-r from-blue-600 to-purple-500 bg-clip-text text-transparent">
