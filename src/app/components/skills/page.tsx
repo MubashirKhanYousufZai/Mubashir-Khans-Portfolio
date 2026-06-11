@@ -1,115 +1,200 @@
 "use client";
 
-import React from "react";
 import { motion } from "framer-motion";
-import { TiHtml5 } from "react-icons/ti";
-import { FaCss3Alt, FaNode, FaPython, FaReact, FaGitAlt } from "react-icons/fa";
-import { BiLogoTypescript } from "react-icons/bi";
-import { SiNextdotjs, SiFramer, SiShadcnui, SiStreamlit, SiPostman } from "react-icons/si";
-import { MdEngineering } from "react-icons/md";
+import {
+  Code2,
+  Brain,
+  Server,
+  Wrench,
+  Sparkles,
+} from "lucide-react";
 
-const skills = {
-  frontend: [
-    { name: "HTML5", icon: <TiHtml5 className="text-5xl text-orange-500" /> },
-    { name: "CSS3 / TailwindCSS", icon: <FaCss3Alt className="text-5xl text-blue-500" /> },
-    { name: "JavaScript / TypeScript", icon: <BiLogoTypescript className="text-5xl text-blue-700" /> },
-    { name: "React.js", icon: <FaReact className="text-5xl text-sky-400" /> },
-    { name: "Next.js (App Router)", icon: <SiNextdotjs className="text-5xl text-gray-900 dark:text-white" /> },
-    { name: "ShadCN UI", icon: <SiShadcnui className="text-5xl text-purple-600" /> },
-    { name: "Framer Motion", icon: <SiFramer className="text-5xl text-pink-500" /> },
-  ],
-  backend: [
-    { name: "Node.js", icon: <FaNode className="text-5xl text-green-600" /> },
-    { name: "API Integration (REST, MockAPI, Sanity)", icon: <SiPostman className="text-5xl text-orange-600" /> },
-    { name: "Git & GitHub", icon: <FaGitAlt className="text-5xl text-red-500" /> },
-    { name: "Streamlit", icon: <SiStreamlit className="text-5xl text-pink-400" /> },
-  ],
-  other: [
-    { name: "Python (Beginner)", icon: <FaPython className="text-5xl text-yellow-500" /> },
-    { name: "Prompt Engineering", icon: <MdEngineering className="text-5xl text-gray-700" /> },
-    { name: "Problem Solving", icon: <span className="text-4xl">💡</span> },
-  ],
-};
+const skillCategories = [
+  {
+    title: "Frontend Development",
+    icon: Code2,
+    skills: [
+      "HTML5",
+      "CSS3",
+      "Tailwind CSS",
+      "JavaScript",
+      "TypeScript",
+      "React.js",
+      "Next.js",
+      "App Router",
+      "ShadCN UI",
+      "Framer Motion",
+      "Responsive Design",
+      "UI Development",
+    ],
+  },
+  {
+    title: "AI & Python",
+    icon: Brain,
+    skills: [
+      "Python",
+      "Streamlit",
+      "OpenAI API",
+      "Prompt Engineering",
+      "AI Agents",
+      "Agentic AI",
+      "Chatbot Development",
+      "Automation",
+    ],
+  },
+  {
+    title: "Backend & APIs",
+    icon: Server,
+    skills: [
+      "Node.js",
+      "REST APIs",
+      "API Integration",
+      "MockAPI",
+      "Sanity CMS",
+      "JSON",
+      "Data Fetching",
+    ],
+  },
+  {
+    title: "Tools & Platforms",
+    icon: Wrench,
+    skills: [
+      "Git",
+      "GitHub",
+      "Vercel",
+      "VS Code",
+      "Postman",
+      "Figma",
+      "Deployment",
+      "Version Control",
+    ],
+  },
+];
 
-const Skills = () => {
+export default function Skills() {
   return (
-    <motion.section
-      className="body-font py-20 px-6 sm:px-10 bg-gradient-to-b from-gray-900 via-black to-gray-800 font-[Inter]"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+    <section
+      id="skills"
+      className="relative overflow-hidden bg-black py-24 text-white"
     >
-      <div className="container mx-auto max-w-7xl">
-        {/* Heading */}
-        <div className="text-center mb-16">
-          <motion.h1
-            className="text-5xl md:text-6xl font-extrabold text-gray-900 tracking-tight"
-            initial={{ y: -30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.7 }}
-          >
-           <div className="text-center gap-2">
-            <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-center">
-              <span className="text-gray-100">My</span>{" "}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-purple-500">
-                Skills
-              </span>
-            </h1>
-           </div>
-          </motion.h1>
-          <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-            Technologies and tools I have mastered and keep improving on my web development journey.
+      {/* HERO STYLE BACKGROUND (same as Hero section) */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_35%)]" />
+
+      <div className="absolute top-20 left-1/2 h-[450px] w-[450px] -translate-x-1/2 rounded-full bg-blue-500/20 blur-[140px]" />
+
+      <div className="absolute bottom-0 right-0 h-[350px] w-[350px] rounded-full bg-purple-500/20 blur-[140px]" />
+
+      {/* GRID */}
+      <div className="absolute inset-0 opacity-[0.04]">
+        <div className="h-full w-full bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:60px_60px]" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-6">
+        {/* HEADER */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20 text-center"
+        >
+          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/20 bg-blue-500/10 px-5 py-2 text-sm text-blue-400 backdrop-blur-xl">
+            <Sparkles className="h-4 w-4" />
+            Skills & Technologies
+          </div>
+
+          <h2 className="mt-6 text-5xl font-black tracking-tight md:text-7xl">
+            Building Products With
+            <span className="block bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-500 bg-clip-text text-transparent">
+              Modern Technologies
+            </span>
+          </h2>
+
+          <p className="mx-auto mt-6 max-w-3xl text-lg text-gray-400">
+            Technologies, frameworks, and tools I use to build modern web applications
+            and AI-powered solutions.
           </p>
+        </motion.div>
+
+        {/* SKILL CARDS */}
+        <div className="grid gap-8 md:grid-cols-2">
+          {skillCategories.map((category, index) => {
+            const Icon = category.icon;
+
+            return (
+              <motion.div
+                key={category.title}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="group relative overflow-hidden rounded-3xl border border-white/5 bg-white/[0.03] p-8 backdrop-blur-xl transition-all duration-500 hover:border-blue-500/30 hover:bg-white/[0.06]"
+              >
+                {/* glow overlay */}
+                <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-purple-500/0 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+                {/* header */}
+                <div className="relative mb-6 flex items-center gap-4">
+                  <div className="rounded-2xl border border-blue-500/20 bg-blue-500/10 p-3">
+                    <Icon className="h-7 w-7 text-blue-400" />
+                  </div>
+
+                  <h3 className="text-2xl font-bold">
+                    {category.title}
+                  </h3>
+                </div>
+
+                {/* skills */}
+                <div className="relative flex flex-wrap gap-3">
+                  {category.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="rounded-full border border-white/5 bg-white/[0.04] px-4 py-2 text-sm text-gray-300 transition-all duration-300 hover:scale-105 hover:border-blue-500/40 hover:bg-blue-500/10 hover:text-white"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
-        {/* Skill Categories */}
-        {Object.entries(skills).map(([category, skillList], index) => (
-          <motion.div
-            key={category}
-            className="mb-14"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: index * 0.2 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-2xl font-semibold text-indigo-600 mb-8 capitalize text-center">
-              {category} Skills
-            </h2>
-            <div className="grid gap-8 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {skillList.map((skill, idx) => (
-                <motion.div
-                  key={idx}
-                  className="group border border-slate-200 rounded-2xl p-8 flex flex-col items-center shadow-md bg-white/80 backdrop-blur-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-2"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  <div className="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 rounded-full mb-5 group-hover:scale-110 transition-transform duration-300">
-                    {skill.icon}
-                  </div>
-                  <h3 className="text-lg font-semibold text-gray-800 text-center group-hover:text-indigo-600 transition-colors duration-300">
-                    {skill.name}
-                  </h3>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        ))}
-
-        {/* Contact Button */}
+        {/* CURRENTLY LEARNING */}
         <motion.div
-          className="flex justify-center mt-20"
-          whileHover={{ scale: 1.08 }}
-          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mt-16 rounded-3xl border border-white/5 bg-white/[0.03] p-10 text-center backdrop-blur-xl"
         >
-          <a
-            href="/components/contact"
-            className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold py-4 px-12 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300"
-          >
-            Contact Me
-          </a>
+          <h3 className="text-3xl font-bold">
+            Currently Learning
+          </h3>
+
+          <p className="mt-3 text-gray-400">
+            Continuously expanding my skills in AI, automation, and modern software engineering.
+          </p>
+
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            {[
+              "Agentic AI",
+              "LangChain",
+              "AI Agents",
+              "MCP",
+              "OpenAI SDK",
+              "Advanced TypeScript",
+              "System Design",
+            ].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm text-blue-300"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </motion.div>
       </div>
-    </motion.section>
+    </section>
   );
-};
-
-export default Skills;
+}

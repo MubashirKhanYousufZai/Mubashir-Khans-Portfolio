@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaRobot } from "react-icons/fa";
 import { RxCross2 } from "react-icons/rx";
 
@@ -10,110 +10,150 @@ interface Message {
 }
 
 export default function ChatWidget() {
-  const [isOpen, setIsOpen] = useState(false); // Controls open/close
+  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const sendMessage = async () => {
-    if (!input.trim()) return;
+  const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-    const userMsg: Message = { role: "user", content: input };
-    setMessages((prev) => [...prev, userMsg]);
+  // Auto scroll to bottom
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading]);
+
+  const sendMessage = async () => {
+    if (!input.trim() || isLoading) return;
+
+    const userMessage: Message = {
+      role: "user",
+      content: input.trim(),
+    };
+
+    const currentInput = input;
     setInput("");
+
+    setMessages((prev) => [...prev, userMessage]);
     setIsLoading(true);
 
     try {
       const res = await fetch("/api/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: input }),
+        body: JSON.stringify({ message: currentInput }),
       });
 
-      const { reply } = await res.json();
-      if (reply) {
-        setMessages((prev) => [...prev, { role: "assistant", content: reply }]);
-      } else {
-        setMessages((prev) => [...prev, { role: "assistant", content: "Sorry, something went wrong!" }]);
-      }
+      const data = await res.json();
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: data?.reply || "Sorry, I couldn't respond properly.",
+        },
+      ]);
     } catch (error) {
-      console.error("Chat error:", error);
-      setMessages((prev) => [...prev, { role: "assistant", content: "Network error—try again!" }]);
+      console.error(error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          content: "Network error. Please try again.",
+        },
+      ]);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // If chat is closed → show only floating button
+  // Floating button (closed state)
   if (!isOpen) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 hover:bg-blue-700 text-white rounded-full shadow-lg flex items-center justify-center text-2xl transition-all duration-200 z-50"
-        aria-label="Open AI Assistant"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 hover:scale-105 text-white rounded-full shadow-xl flex items-center justify-center text-2xl transition-all z-50"
+        aria-label="Open chat"
       >
         <FaRobot />
       </button>
     );
   }
 
-  // Chat is open → full widget
   return (
-    <div className="fixed bottom-6 right-6 w-80 h-96 bg-white border border-gray-200 rounded-lg shadow-xl flex flex-col z-50 animate-in fade-in slide-in-from-bottom-2 duration-300">
-      {/* Header */}
-      <div className="p-3 bg-blue-600 text-white rounded-t-lg flex justify-between items-center">
-        <h3 className="text-sm font-semibold">Mubashir's AI Robot Face</h3>
+    <div className="fixed bottom-6 right-6 w-[340px] h-[420px] bg-white border border-gray-200 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50">
+
+      {/* HEADER */}
+      <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
+        <h3 className="text-sm font-semibold">AI Assistant</h3>
+
         <button
           onClick={() => {
             setIsOpen(false);
-            setMessages([]); // Optional: clear chat on close
+            setMessages([]);
           }}
-          className="text-white hover:bg-blue-700 rounded-full p-1 transition"
-          aria-label="Close chat"
+          className="hover:bg-white/20 p-1 rounded-full transition"
         >
           <RxCross2 />
         </button>
       </div>
 
-      {/* Messages Area */}
-      <div className="flex-1 p-3 overflow-y-auto bg-gray-50 text-sm">
+      {/* MESSAGES */}
+      <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-gray-50 text-sm">
         {messages.length === 0 && (
-          <p className="text-gray-500 text-center mt-6 text-xs">
-            Ask me about Mubashir's skills or projects!
-          </p>
+          <div className="text-center text-gray-400 text-xs mt-10">
+            Ask me about Mubashir’s skills, projects, or experience 🚀
+          </div>
         )}
-        {messages.map((msg, idx) => (
+
+        {messages.map((msg, i) => (
           <div
-            key={idx}
-            className={`mb-2 ${msg.role === "user" ? "text-right" : "text-left"}`}
+            key={i}
+            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
-            <span
-              className={`inline-block p-2 rounded-lg max-w-xs text-xs ${
-                msg.role === "user" ? "bg-blue-100 text-blue-900" : "bg-green-100 text-green-900"
+            <div
+              className={`px-3 py-2 rounded-2xl max-w-[75%] text-xs leading-relaxed shadow-sm ${
+                msg.role === "user"
+                  ? "bg-blue-600 text-white rounded-br-sm"
+                  : "bg-white text-gray-800 border rounded-bl-sm"
               }`}
             >
               {msg.content}
-            </span>
+            </div>
           </div>
         ))}
-        {isLoading && <p className="text-xs text-gray-500 animate-pulse">Typing...</p>}
+
+        {/* Typing indicator */}
+        {isLoading && (
+          <div className="flex justify-start">
+            <div className="px-3 py-2 text-xs bg-white border rounded-2xl text-gray-500 animate-pulse">
+              AI is typing...
+            </div>
+          </div>
+        )}
+
+        <div ref={messagesEndRef} />
       </div>
 
-      {/* Input Area */}
-      <div className="p-3 border-t flex gap-1">
+      {/* INPUT */}
+      <div className="p-3 border-t bg-white flex gap-2">
         <input
-          type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && !isLoading && sendMessage()}
-          placeholder="Ask me anything..."
-          className="flex-1 p-2 text-sm border rounded-l-lg outline-none focus:border-blue-500"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" && !e.shiftKey) {
+              e.preventDefault();
+              sendMessage();
+            }
+          }}
+          placeholder="Type a message..."
+          className="flex-1 text-sm px-3 py-2 border rounded-xl outline-none focus:border-blue-500"
           disabled={isLoading}
         />
+
         <button
           onClick={sendMessage}
-          disabled={isLoading || !input.trim()}
-          className="px-3 bg-blue-600 text-white rounded-r-lg text-sm disabled:opacity-50 hover:bg-blue-700 transition"
+          disabled={!input.trim() || isLoading}
+          className="px-4 py-2 bg-blue-600 text-white rounded-xl text-sm disabled:opacity-50 hover:bg-blue-700 transition"
         >
           Send
         </button>
