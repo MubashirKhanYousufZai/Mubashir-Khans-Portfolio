@@ -1,134 +1,130 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
 import { HiDocumentArrowDown } from "react-icons/hi2";
-import { usePathname } from "next/navigation";
-import Link from "next/link";
-import { motion } from "framer-motion";
-import { CgProfile } from "react-icons/cg";
 
-const Header = () => {
-  const pathname = usePathname();
+const navItems = [
+  { name: "About", href: "/components/hero" },
+  { name: "Projects", href: "/components/projects" },
+  { name: "Skills", href: "/components/skills" },
+  { name: "Experience", href: "/components/experience" },
+  { name: "Contact", href: "/components/contact" },
+];
+
+export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
+      setScrolled(window.scrollY > 30);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/components/hero" },
-    { name: "Projects", path: "/components/projects" },
-    { name: "Skills", path: "/components/skills" },
-    { name: "Experience", path: "/components/experience" },
-    { name: "Contact", path: "/components/contact" },
-  ];
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   return (
     <motion.header
-      initial={{ y: -80 }}
+      initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 w-full z-50 shadow-lg transition-all duration-500 ${
+      transition={{ duration: 0.6 }}
+      className={`fixed top-0 left-0 z-50 w-full transition-all duration-300 ${
         scrolled
-          ? "bg-black/95 backdrop-blur-md py-2"
-          : "bg-black/90 backdrop-blur-md py-4"
+          ? "border-b border-white/10 bg-black/80 backdrop-blur-xl"
+          : "bg-transparent"
       }`}
     >
-      <div className="container mx-auto flex items-center justify-between px-6">
-        {/* Logo */}
-        <motion.a
-          href="/"
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.05 }}
-          className="flex items-center gap-3 text-white hover:text-blue-400 transition-all duration-300"
-        >
-          <CgProfile className="text-3xl" />
-          <span className="text-lg md:text-xl font-bold tracking-wide">
-            Mubashir Khan Yousufzai
-          </span>
-        </motion.a>
+      <div className="max-w-7xl mx-auto px-6">
+        <div className="flex h-20 items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3">
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 font-bold text-white shadow-lg">
+              MK
+            </div>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          {navItems.map((item, index) => (
-            <motion.div
-              key={index}
-              whileHover={{ scale: 1.1 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Link
-                href={item.path}
-                className={`relative text-sm font-medium transition-all duration-300 hover:text-blue-400 ${
-                  pathname === item.path
-                    ? "text-blue-400 after:absolute after:bottom-[-6px] after:left-0 after:w-full after:h-[2px] after:bg-blue-400 after:rounded-full"
-                    : "text-gray-300"
-                }`}
+            <div>
+              <h2 className="font-bold text-white text-lg">
+                Mubashir Khan
+              </h2>
+
+              <p className="text-xs text-gray-400">
+                Frontend Developer
+              </p>
+            </div>
+          </Link>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-sm font-medium text-gray-300 transition-all duration-300 hover:text-blue-400"
               >
                 {item.name}
-              </Link>
-            </motion.div>
-          ))}
-        </nav>
+              </a>
+            ))}
+          </nav>
 
-        {/* CV Download */}
-        <motion.a
-          href="/components/CV"
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
-          className="hidden md:flex items-center gap-2 bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-2 rounded-xl shadow-md transition-all duration-300"
-        >
-          Download CV
-          <HiDocumentArrowDown className="text-xl" />
-        </motion.a>
+          {/* Resume Button */}
+          <a
+            href="/components/CV"
+            target="_blank"
+            className="hidden md:flex items-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-2.5 text-white transition-all duration-300 hover:scale-105"
+          >
+            Resume
+            <HiDocumentArrowDown size={18} />
+          </a>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMenuOpen(!menuOpen)}
-          className="text-white text-2xl md:hidden focus:outline-none"
-        >
-          {menuOpen ? <FaTimes /> : <FaBars />}
-        </button>
+          {/* Mobile Button */}
+          <button
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="text-white text-2xl md:hidden"
+          >
+            {menuOpen ? <FaTimes /> : <FaBars />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
-      {menuOpen && (
-        <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="md:hidden bg-black/95 px-6 py-6 space-y-4"
-        >
-          {navItems.map((item, index) => (
-            <Link
-              key={index}
-              href={item.path}
-              onClick={() => setMenuOpen(false)}
-              className={`block text-base font-medium transition-all duration-300 hover:text-blue-400 ${
-                pathname === item.path ? "text-blue-400" : "text-gray-300"
-              }`}
-            >
-              {item.name}
-            </Link>
-          ))}
-
-          <a
-            href="/components/CV"
-            className="block mt-4 w-full text-center bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-4 py-2 rounded-xl shadow-md transition-all duration-300"
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -25 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -25 }}
+            className="md:hidden border-t border-white/10 bg-black/95 backdrop-blur-xl"
           >
-            Download CV
-          </a>
-        </motion.div>
-      )}
+            <div className="flex flex-col px-6 py-6 gap-5">
+              {navItems.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className="text-gray-300 hover:text-blue-400 transition-all"
+                >
+                  {item.name}
+                </a>
+              ))}
+
+              <a
+                href="/components/CV"
+                target="_blank"
+                className="mt-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-5 py-3 text-center text-white"
+              >
+                Download Resume
+              </a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.header>
   );
-};
-
-export default Header;
+}

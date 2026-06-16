@@ -17,7 +17,6 @@ export default function ChatWidget() {
 
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
-  // Auto scroll to bottom
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
@@ -53,7 +52,6 @@ export default function ChatWidget() {
         },
       ]);
     } catch (error) {
-      console.error(error);
       setMessages((prev) => [
         ...prev,
         {
@@ -66,55 +64,62 @@ export default function ChatWidget() {
     }
   };
 
-  // Floating button (closed state)
+  /* ---------------- FLOAT BUTTON ---------------- */
   if (!isOpen) {
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 w-14 h-14 bg-gradient-to-br from-blue-600 to-blue-800 hover:scale-105 text-white rounded-full shadow-xl flex items-center justify-center text-2xl transition-all z-50"
+        className="fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 text-white shadow-[0_0_30px_rgba(59,130,246,0.6)] transition-all hover:scale-110"
         aria-label="Open chat"
       >
-        <FaRobot />
+        <FaRobot className="text-lg" />
       </button>
     );
   }
 
   return (
-    <div className="fixed bottom-6 right-6 w-[340px] h-[420px] bg-white border border-gray-200 rounded-2xl shadow-2xl flex flex-col overflow-hidden z-50">
+    <div className="fixed bottom-6 right-6 z-50 flex h-[460px] w-[360px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-black/70 backdrop-blur-2xl shadow-[0_0_40px_rgba(59,130,246,0.25)]">
 
       {/* HEADER */}
-      <div className="flex items-center justify-between px-4 py-3 bg-gradient-to-r from-blue-600 to-blue-700 text-white">
-        <h3 className="text-sm font-semibold">AI Assistant</h3>
+      <div className="flex items-center justify-between border-b border-white/10 bg-black/60 px-4 py-3">
+        <div className="flex items-center gap-2">
+          <FaRobot className="text-blue-400" />
+          <h3 className="text-sm font-semibold text-white">
+            AI Assistant
+          </h3>
+        </div>
 
         <button
           onClick={() => {
             setIsOpen(false);
             setMessages([]);
           }}
-          className="hover:bg-white/20 p-1 rounded-full transition"
+          className="rounded-full p-1 text-gray-400 transition hover:bg-white/10 hover:text-white"
         >
           <RxCross2 />
         </button>
       </div>
 
       {/* MESSAGES */}
-      <div className="flex-1 overflow-y-auto p-3 space-y-2 bg-gray-50 text-sm">
+      <div className="flex-1 space-y-2 overflow-y-auto bg-gradient-to-b from-black/40 to-black/80 p-3 text-sm">
         {messages.length === 0 && (
-          <div className="text-center text-gray-400 text-xs mt-10">
-            Ask me about Mubashir’s skills, projects, or experience 🚀
+          <div className="mt-10 text-center text-xs text-gray-500">
+            Ask about Mubashir’s skills, projects, or experience 🚀
           </div>
         )}
 
         {messages.map((msg, i) => (
           <div
             key={i}
-            className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+            className={`flex ${
+              msg.role === "user" ? "justify-end" : "justify-start"
+            }`}
           >
             <div
-              className={`px-3 py-2 rounded-2xl max-w-[75%] text-xs leading-relaxed shadow-sm ${
+              className={`max-w-[75%] rounded-2xl px-3 py-2 text-xs leading-relaxed shadow-md ${
                 msg.role === "user"
-                  ? "bg-blue-600 text-white rounded-br-sm"
-                  : "bg-white text-gray-800 border rounded-bl-sm"
+                  ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-br-sm"
+                  : "border border-white/10 bg-white/5 text-gray-200 backdrop-blur-md rounded-bl-sm"
               }`}
             >
               {msg.content}
@@ -122,10 +127,9 @@ export default function ChatWidget() {
           </div>
         ))}
 
-        {/* Typing indicator */}
         {isLoading && (
           <div className="flex justify-start">
-            <div className="px-3 py-2 text-xs bg-white border rounded-2xl text-gray-500 animate-pulse">
+            <div className="animate-pulse rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-xs text-gray-400">
               AI is typing...
             </div>
           </div>
@@ -135,7 +139,7 @@ export default function ChatWidget() {
       </div>
 
       {/* INPUT */}
-      <div className="p-3 border-t bg-white flex gap-2">
+      <div className="flex gap-2 border-t border-white/10 bg-black/60 p-3">
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
@@ -145,15 +149,15 @@ export default function ChatWidget() {
               sendMessage();
             }
           }}
-          placeholder="Type a message..."
-          className="flex-1 text-sm px-3 py-2 border rounded-xl outline-none focus:border-blue-500"
+          placeholder="Ask something..."
           disabled={isLoading}
+          className="flex-1 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white outline-none placeholder:text-gray-500 focus:border-blue-500"
         />
 
         <button
           onClick={sendMessage}
           disabled={!input.trim() || isLoading}
-          className="px-4 py-2 bg-blue-600 text-white rounded-xl text-sm disabled:opacity-50 hover:bg-blue-700 transition"
+          className="rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 text-sm text-white transition hover:scale-105 disabled:opacity-50"
         >
           Send
         </button>

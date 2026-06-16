@@ -1,84 +1,148 @@
 "use client";
 
-import React from "react";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { CgProfile } from "react-icons/cg";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
+import {
+  FaGithub,
+  FaLinkedin,
+  FaTwitter,
+} from "react-icons/fa";
+import { IoMail } from "react-icons/io5";
 
-const Footer = () => {
+export default function Footer() {
+  const year = new Date().getFullYear();
+
   return (
-    <footer className="bg-black text-gray-400 body-font border-t border-gray-800">
-      <div className="container px-6 py-8 mx-auto flex flex-col md:flex-row items-center justify-between">
-        
-        {/* Logo & Name */}
-        <motion.a
-          href="/"
-          whileHover={{ scale: 1.05 }}
-          className="flex items-center text-white hover:text-blue-400 transition-all duration-300"
-        >
-          <CgProfile className="text-3xl" />
-          <span className="ml-3 text-lg font-semibold tracking-wide">
-            Mubashir Khan Yousufzai
-          </span>
-        </motion.a>
+    <footer className="relative border-t border-white/10 bg-black">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid gap-12 md:grid-cols-4">
+          {/* Brand */}
+          <div>
+            <div className="flex items-center gap-3">
+              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 font-bold text-white">
+                MK
+              </div>
 
-        {/* Email */}
-        <motion.p
-          whileHover={{ scale: 1.05, color: "#60A5FA" }}
-          className="text-sm text-gray-400 mt-4 md:mt-0 cursor-pointer transition-all duration-300"
-        >
-          ©{" "}
-          <a href="mailto:mubashirmpa2008@gmail.com" className="hover:underline">
-            mubashirmpa2008@gmail.com
-          </a>
-        </motion.p>
+              <div>
+                <h3 className="font-bold text-white">
+                  Mubashir Khan
+                </h3>
 
-        {/* Social Media Links */}
-        <div className="flex gap-5 mt-6 md:mt-0">
-          <motion.a
-            whileHover={{ scale: 1.2, color: "#0A66C2" }}
-            href="https://www.linkedin.com/in/mubashir-khan-538a662bb"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white text-2xl transition-all duration-300"
-          >
-            <FaLinkedin />
-          </motion.a>
+                <p className="text-sm text-gray-400">
+                  Frontend Developer
+                </p>
+              </div>
+            </div>
 
-          <motion.a
-            whileHover={{ scale: 1.2, color: "#ccc" }}
-            href="https://github.com/MubashirKhanYousufZai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white text-2xl transition-all duration-300"
-          >
-            <FaGithub />
-          </motion.a>
+            <p className="mt-5 text-gray-400 leading-relaxed">
+              Building modern, responsive and user-focused web
+              applications with Next.js, React and TypeScript.
+            </p>
+          </div>
 
-          <motion.a
-            whileHover={{ scale: 1.2, color: "#0A66C2" }}
-            href="https://x.com/MubashirKh67451"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white text-2xl transition-all duration-300"
-          >
-            <FaTwitter />
-          </motion.a>
+          {/* Navigation */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">
+              Navigation
+            </h4>
 
-          <motion.a
-            whileHover={{ scale: 1.2, color: "#ccc" }}
-            href="mailto:mubashirmpa2008@gmail.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white text-2xl transition-all duration-300"
-          >
-            <IoIosMail />
-          </motion.a>
+            <div className="flex flex-col gap-3">
+              <a href="/components/about" className="text-gray-400 hover:text-white">
+                About
+              </a>
+
+              <a href="/components/projects" className="text-gray-400 hover:text-white">
+                Projects
+              </a>
+
+              <a href="/components/skills" className="text-gray-400 hover:text-white">
+                Skills
+              </a>
+
+              <a href="/components/experience" className="text-gray-400 hover:text-white">
+                Experience
+              </a>
+
+              <a href="/components/contact" className="text-gray-400 hover:text-white">
+                Contact
+              </a>
+            </div>
+          </div>
+
+          {/* Connect */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">
+              Connect
+            </h4>
+
+            <div className="flex gap-4">
+              <motion.a
+                whileHover={{ scale: 1.15 }}
+                href="https://github.com/MubashirKhanYousufZai"
+                target="_blank"
+                className="rounded-xl border border-white/10 p-3 text-white hover:border-blue-500"
+              >
+                <FaGithub size={20} />
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.15 }}
+                href="https://www.linkedin.com/in/mubashir-khan-538a662bb/"
+                target="_blank"
+                className="rounded-xl border border-white/10 p-3 text-white hover:border-blue-500"
+              >
+                <FaLinkedin size={20} />
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.15 }}
+                href="https://x.com/MubashirKh67451"
+                target="_blank"
+                className="rounded-xl border border-white/10 p-3 text-white hover:border-blue-500"
+              >
+                <FaTwitter size={20} />
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.15 }}
+                href="mailto:mubashirmpa2008@gmail.com"
+                className="rounded-xl border border-white/10 p-3 text-white hover:border-blue-500"
+              >
+                <IoMail size={20} />
+              </motion.a>
+            </div>
+
+            <p className="mt-4 text-gray-400 text-sm">
+              mubashirmpa2008@gmail.com
+            </p>
+          </div>
+
+          {/* Availability */}
+          <div>
+            <h4 className="font-semibold text-white mb-4">
+              Available For
+            </h4>
+
+            <ul className="space-y-3 text-gray-400">
+              <li>✓ Frontend Internships</li>
+              <li>✓ Junior Developer Roles</li>
+              <li>✓ Freelance Projects</li>
+              <li>✓ Remote Opportunities</li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom */}
+        <div className="mt-14 border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between">
+          <p className="text-sm text-gray-500">
+            © {year} Mubashir Khan. All rights reserved.
+          </p>
+
+          <p className="mt-3 md:mt-0 text-sm text-gray-500">
+            Built with Next.js, TypeScript & Tailwind CSS
+          </p>
         </div>
       </div>
     </footer>
   );
-};
-
-export default Footer;
+}

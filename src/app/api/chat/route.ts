@@ -1,120 +1,74 @@
-// app/api/chat/route.ts
 import { NextResponse } from "next/server";
 import Groq from "groq-sdk";
 
 export async function POST(req: Request) {
   try {
-    // ---- 1. API key check -------------------------------------------------
-    if (!process.env.GROQ_API_KEY) {
+    // -------------------------------
+    // 1. Check API Key
+    // -------------------------------
+    const apiKey = process.env.GROQ_API_KEY;
+
+    console.log("GROQ KEY LOADED:", !!apiKey);
+
+    if (!apiKey) {
       return NextResponse.json(
-        { error: "GROQ_API_KEY missing" },
+        { reply: "Server error: API key missing" },
         { status: 500 }
       );
     }
 
-    const client = new Groq({ apiKey: process.env.GROQ_API_KEY });
+    // -------------------------------
+    // 2. Parse request body
+    // -------------------------------
+    const { message } = await req.json();
 
-    // ---- 2. Parse body ----------------------------------------------------
-    let body;
-    try {
-      body = await req.json();
-    } catch {
-      return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
-    }
-
-    const { message } = body;
-    if (!message || typeof message !== "string" || message.trim() === "") {
+    if (!message || typeof message !== "string") {
       return NextResponse.json(
-        { error: "Message is required" },
+        { reply: "Invalid message" },
         { status: 400 }
       );
     }
 
-    // ---- 3. Call Groq ------------------------------------------------------
-    const chatCompletion = await client.chat.completions.create({
-      model: "llama-3.1-8b-instant",          // fast & stable
+    // -------------------------------
+    // 3. Init Groq client
+    // -------------------------------
+    const client = new Groq({
+      apiKey: apiKey,
+    });
+
+    // -------------------------------
+    // 4. Call Groq API
+    // -------------------------------
+    const completion = await client.chat.completions.create({
+      model: "llama3-8b-8192",
       messages: [
         {
           role: "system",
-          content: `
-You are **Mubashirs AI Assistant** (robot emoji).  
-Your **only job** is to give honest, factual answers about Mubashir Khan using **exactly** the information below.  
-If a question goes beyond these facts, reply:
-
-> “I only know whats listed here ask Mubashir directly or check his portfolio!”
-
----
-
-### MUBASHIR KHAN VERIFIED FACTS
-
-#### Frontend Skills
-- HTML5
-- CSS3 / TailwindCSS
-- JavaScript / TypeScript
-- React.js
-- Next.js (App Router)
-- ShadCN UI
-- Framer Motion
-
-#### Backend Skills
-- Node.js
-- API Integration (REST, MockAPI, Sanity)
-- Git & GitHub
-- Streamlit
-
-#### Other Skills
-- Python (Beginner)
-- Prompt Engineering
-- Problem Solving
-
-#### Projects
-1. **Chitty Chat Assistant** Front-End + AI Agents  
-   A friendly AI chatbot that helps users with info and answers questions in a fun way.
-
-2. **Fitlytic** Full Stack  
-   A fitness & workout planning platform that uses AI to help users reach health goals.
-
-3. **The Pawfect Store** Full Stack  
-   A user-friendly web app for pet lovers to find their loving partner.
-
-4. **Pizza Run** Full Stack  
-   Q-commerce website for the restaurant Pizza Run.
-
-5. **Quick Crave** Full Stack  
-   Q-commerce website for the café Quick Crave.
-
-6. **Urdu Rap And Reality** Front End  
-   A blog website for Urdu Rap And Reality.
-
-> *More projects can be found on Mubashirs LinkedIn profile.*
-
----
-
-**Response style**  
-- Keep it short, friendly, and enthusiastic.  
-- Use bullet points or numbered lists when listing skills/projects.  
-- End with a call-to-action when it makes sense (e.g., “Check the live demo on the portfolio!”).
-
---- 
-`.trim(),
+          content:
+            "You are Mubashir's AI assistant. Answer briefly and clearly.",
         },
-        { role: "user", content: message },
+        {
+          role: "user",
+          content: message,
+        },
       ],
       temperature: 0.7,
-      max_tokens: 1024,
-      stream: false,
+      max_tokens: 500,
     });
 
-    // ---- 4. Return reply --------------------------------------------------
     const reply =
-      chatCompletion.choices?.[0]?.message?.content?.trim() ||
-      "Hey! I'm Mubashir’s AI Assistant (robot emoji) – ask me about his skills or projects!";
+      completion.choices?.[0]?.message?.content?.trim() ||
+      "Sorry, I couldn't generate a response.";
 
+    // -------------------------------
+    // 5. Send response
+    // -------------------------------
     return NextResponse.json({ reply });
   } catch (error: any) {
-    console.error("Groq error:", error);
+    console.error("Chat API Error:", error);
+
     return NextResponse.json(
-      { error: "Something went wrong – check server logs." },
+      { reply: "Server error. Please try again." },
       { status: 500 }
     );
   }
